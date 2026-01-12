@@ -61,7 +61,6 @@ Run the following commands in your terminal within the repo directory to initial
 docker compose up airflow-init    
 docker compose up
 ```
-
 ### 7. Access Airflow
 
 Access Airflow in browser at http://localhost:8081 with selected user and password. It should now show the DAG games_tracker. Here, you can to track DAG runs and troubleshoot any issues. 
