@@ -1,6 +1,6 @@
 # In-Game Player Notifications
 
-This repo will allow the user to receive push notifications to their phone when in-game substitutions occur during sporting events of their choice (currently tested on NCAA women's basketball). Notifications can be set up for any substitutions within the chosen games, or for particular teams or particular players of the user's choice within those games. 
+This repo will allow the user to receive push notifications to their phone when in-game substitutions occur during sporting events of their choice (currently tested on NCAA women's basketball). Notifications can be set up for any substitutions within the chosen games, or for particular teams or players of the user's choice within those games. 
 
 ## Background and Purpose
 
