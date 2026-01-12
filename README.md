@@ -10,19 +10,18 @@ Beyond my personal investment in setting up this project, I can see a use for ot
 
 ## Repo Structure
 
+```
+player-notify/
 ├── dags/
 │   └── games_tracker.py
-│
 ├── src/
 │   ├── espn_ncaabb_run.py
 │   ├── game_schedule.py
-│   ├── seen_subs.json
-│
+│   └── seen_subs.json
 ├── docker-compose.yml
-│
 ├── .env
-│
-├── README.md
+└── README.md
+```
 
 ## Steps to run
 
@@ -58,8 +57,10 @@ Make sure you have Docker installed and open.
 
 Run the following commands in your terminal within the repo directory to initialize and start Airflow: 
 
-docker compose up airflow-init
+```
+docker compose up airflow-init    
 docker compose up
+```
 
 ### 7. Access Airflow
 
