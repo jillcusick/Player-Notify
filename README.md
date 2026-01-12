@@ -27,9 +27,9 @@ player-notify/
 
 ### 1. Clone this repo to your desktop 
 
-### 2. Update game_schedule.py
+### 2. Ongoing: Update game_schedule.py
 
-Add the event_id, date, and times for any events you want notifications for under GAME_SCHEDULE in game_schedule.py. You can find the event_id (game_id) within the URL on the ESPN event page, which is also available prior to the game. E.g. https://www.espn.com/womens-college-basketball/game/_/gameId/401817390/notre-dame-uconn. 
+Add the event_id, date, and times for any events you want notifications for under GAME_SCHEDULE in game_schedule.py. You can find the event_id (game_id) within the URL on the ESPN event page, which is also available prior to the game. E.g. https://www.espn.com/womens-college-basketball/game/_/gameId/401817390/notre-dame-uconn. You can add new games at any time. 
 
 ### 3. Register for Pushover API and download app
 
