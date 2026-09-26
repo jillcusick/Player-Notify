@@ -5,27 +5,38 @@ import sys
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-# Ensure src is importable inside the container
-repo_path = os.path.dirname(os.path.dirname(__file__))
-if repo_path not in sys.path:
-    sys.path.append(repo_path)
+# Import schedule checkers and runners from modular src folders
+from src.ncaabb.config import get_live_games as get_live_ncaabb_games
+from src.ncaabb.runner import run_espn_ncaabb
 
-from src.game_schedule import get_live_games
-from src.espn_ncaabb_run import run_espn_ncaabb
+from src.milb.config import get_live_games as get_live_milb_games
+from src.milb.runner import run_milb_tracker
 
 
-def run_if_game_live(**kwargs): 
+def run_all_live_trackers(**kwargs):
+    """Checks NCAABB and MiLB game schedules, tracking any games currently live."""
     now = kwargs["logical_date"]
-    live_games = get_live_games(now)
+    
+    # Check and run live NCAABB games
+    live_ncaabb = get_live_ncaabb_games(now)
+    if live_ncaabb:
+        for game in live_ncaabb:
+            event_id = game["event_id"]
+            print(f"[NCAABB] Running for live game ID: {event_id}")
+            run_espn_ncaabb(event_id=event_id)
+    else:
+        print("[NCAABB] No live games found.")
 
-    if not live_games:
-        print("No live games, skipping ESPN run.")
-        return
-
-    for game in live_games:
-        event_id = game["event_id"]
-        print(f"Running for live game: {event_id}")
-        run_espn_ncaabb(event_id=event_id)
+    # Check and run live MiLB games
+    live_milb = get_live_milb_games(now)
+    if live_milb:
+        for game in live_milb:
+            game_id = game["event_id"]
+            teams = game.get("teams", "Unknown Matchup")
+            print(f"[MiLB] Running for live game ID: {game_id} ({teams})")
+            run_milb_tracker(game_id=game_id)
+    else:
+        print("[MiLB] No live games found.")
 
 
 default_args = {
@@ -38,11 +49,11 @@ with DAG(
     dag_id="games_tracker",
     default_args=default_args,
     start_date=datetime(2025, 1, 1),
-    schedule_interval="*/2 * * * *",  # every 2 minutes
+    schedule_interval="*/2 * * * *",  # runs every 2 minutes
     catchup=False,
 ) as dag:
 
     poll_games = PythonOperator(
-    task_id="track_games_if_live",
-    python_callable=run_if_game_live,
+        task_id="track_all_games_if_live",
+        python_callable=run_all_live_trackers,
     )

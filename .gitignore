@@ -3,3 +3,4 @@
 logs/
 espn-ncaabb.ipynb 
 __pycache__
+.env

@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 import pandas as pd
 import json
 
-load_dotenv() # load .env file when runs 
+load_dotenv() # load .env file 
 
 # define teams of interest
-teams = ["UConn", "Northwestern", "UCLA"] # add/remove teams anytime 
+teams = ["UConn", "Northwestern", "UCLA"] # add/remove teams as needed 
 # players = # **if limiting to certain players, also update line 73**
 
 def run_espn_ncaabb(event_id: str | None = None):
@@ -145,7 +145,3 @@ def run_espn_ncaabb(event_id: str | None = None):
 
     with open(SEEN_FILE, "w") as f:
         json.dump(list(seen), f)
-
-
-
-
