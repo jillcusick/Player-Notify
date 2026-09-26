@@ -21,7 +21,6 @@ Once it's run, this pipeline does the following:
 
 ![alt text](98C6C9EF-0D20-4EA0-A548-EEBCC7306522_4_5005_c.jpeg)
 
-
 ## Repo Structure
 
 ```
