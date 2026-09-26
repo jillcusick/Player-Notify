@@ -47,7 +47,7 @@ player-notif/
 └── requirements.txt
 ```
 
-## Steps to run
+## Steps to run pipeline
 
 ### 1. Clone this repo to your desktop 
 
